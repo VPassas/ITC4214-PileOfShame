@@ -9,6 +9,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
+
+  <script src="js/backlog.js" defer></script>
 </head>
 <body>
   <!-- main.js fills the header and footer (shared on every page) -->
@@ -16,6 +18,67 @@
 
   <main class="container">
     <h1>My Backlog</h1>
+
+    <!-- add-game form -->
+    <section class="my-4">
+      <h2>Add a Game</h2>
+
+      <form id="gameForm" class="row g-3">
+        <!-- text field -->
+        <div class="col-md-4">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" required>
+        </div>
+        <!-- dropdown -->
+        <div class="col-md-4">
+          <label for="platform" class="form-label">Platform</label>
+          <select class="form-select" id="platform">
+            <option value="PC">PC</option>
+            <option value="PlayStation">PlayStation</option>
+            <option value="Xbox">Xbox</option>
+            <option value="Switch">Switch</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <!-- text field -->
+        <div class="col-md-4">
+          <label for="genre" class="form-label">Genre</label>
+          <input type="text" class="form-control" id="genre">
+        </div>
+        <!-- dropdown -->
+        <div class="col-md-4">
+          <label for="priority" class="form-label">Priority</label>
+          <select class="form-select" id="priority">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <!-- add game button -->
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Add Game</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- game table -->
+    <section class="my-4">
+      <h2>My Games</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Platform</th>
+            <th>Genre</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Date Added</th>
+          </tr>
+        </thead>
+        <tbody id="gamesTableBody"></tbody>
+      </table>
+    </section>
+
   </main>
 
   <footer></footer>
