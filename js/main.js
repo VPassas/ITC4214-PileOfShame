@@ -23,6 +23,9 @@ const headerHTML = `
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
       </div>
+
+      <!-- dark mode button -->
+      <button class="btn btn-outline-secondary btn-sm" id="themeToggle" type="button">Dark mode</button>
     </div>
   </nav>
 `;
@@ -80,4 +83,24 @@ navToggle.addEventListener("click", function () {
 
   // the line below updates the aria-expanded attribute for accessibility
   navToggle.setAttribute("aria-expanded", isOpen);
+});
+
+// dark mode functionality
+const htmlEl = document.querySelector("html");
+const themeToggle = document.querySelector("#themeToggle");
+
+// when the page loads apply the saved theme (default is light)
+const savedTheme = localStorage.getItem("theme") || "light";
+htmlEl.setAttribute("data-bs-theme", savedTheme);
+
+// when the button is clicked switch the theme and remember it
+themeToggle.addEventListener("click", function () {
+  const current = htmlEl.getAttribute("data-bs-theme");
+  if (current === "dark") {
+    htmlEl.setAttribute("data-bs-theme", "light");
+    localStorage.setItem("theme", "light");
+  } else {
+    htmlEl.setAttribute("data-bs-theme", "dark");
+    localStorage.setItem("theme", "dark");
+  }
 });
