@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
 
   <script src="js/backlog.js" defer></script>
 </head>
+
 <body>
   <!-- main.js fills the header and footer (shared on every page) -->
   <header></header>
@@ -64,6 +66,13 @@
     <!-- game table -->
     <section class="my-4">
       <h2>My Games</h2>
+      <!-- counter-->
+      <p>
+        Total: <span id="totalCount">0</span> |
+        Backlog: <span id="backlogCount">0</span> |
+        Beaten: <span id="beatenCount">0</span>
+      </p>
+
       <table class="table table-striped">
         <thead>
           <tr>
@@ -73,6 +82,7 @@
             <th>Priority</th>
             <th>Status</th>
             <th>Date Added</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="gamesTableBody"></tbody>
@@ -83,4 +93,5 @@
 
   <footer></footer>
 </body>
+
 </html>
