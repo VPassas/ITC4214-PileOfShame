@@ -6,9 +6,24 @@ let games = JSON.parse(localStorage.getItem("games")) || [];
 let editingId = null;
 
 
+let currentFilter = "all";
+let currentSort = "none";
+
 // form and body are saved into variables
 const gameForm = document.querySelector("#gameForm");
 const tableBody = document.querySelector("#gamesTableBody");
+
+// returns a colored badge for a priority level
+function priorityBadge(priority) {
+  if (priority === "High") {
+    return `<span class="badge bg-danger">High</span>`;
+  }
+  if (priority === "Medium") {
+    return `<span class="badge bg-warning text-dark">Medium</span>`;
+  }
+  return `<span class="badge bg-success">Low</span>`;   // anything else = Low
+}
+
 
 // save the current games array into localStorage. It is turned into a string because it is the only acceptable format for localStorage.
 function saveGames() {
@@ -43,17 +58,53 @@ function renderSummary() {
   document.querySelector("#beatenCount").textContent = beaten;
 }
 
+// filter buttons to update the current filter and then call render
+document.querySelectorAll(".filter-btn").forEach(function (button) {
+  button.addEventListener("click", function () {
+    currentFilter = button.getAttribute("data-filter");
+    renderGames();
+  });
+});
+
+// sort buttons to update the current sort and then render
+document.querySelectorAll(".sort-btn").forEach(function (button) {
+  button.addEventListener("click", function () {
+    currentSort = button.getAttribute("data-sort");
+    renderGames();
+  });
+});
+
 // every game in the array is represented as a row in the table.
 function renderGames() {
   let rows = "";
 
-  games.forEach(function (game) {
+  // start from all games and narrow down if there is a filter
+  let visibleGames = games;
+  if (currentFilter === "Backlog") {
+    visibleGames = games.filter(function (g) { return g.status === "Backlog"; });
+  } else if (currentFilter === "Beaten") {
+    visibleGames = games.filter(function (g) { return g.status === "Beaten"; });
+  }
+
+  // sort by title or date. slice() copies the array so the original order does not change
+  if (currentSort === "title") {
+    visibleGames = visibleGames.slice().sort(function (a, b) {
+      return a.title.localeCompare(b.title);
+    });
+  } else if (currentSort === "date") {
+    visibleGames = visibleGames.slice().sort(function (a, b) {
+      return a.id - b.id;
+    });
+  }
+
+  // table build
+  visibleGames.forEach(function (game) {
     rows += `
       <tr>
         <td>${game.title}</td>
         <td>${game.platform}</td>
         <td>${game.genre}</td>
-        <td>${game.priority}</td>
+        <td>${priorityBadge(game.priority)}</td> <!-- this calls priorityBadge() to get the colored symbol -->
         <td>${game.status}</td>
         <td>${game.dateAdded}</td>
         <td>
