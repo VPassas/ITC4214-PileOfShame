@@ -11,7 +11,7 @@ fetch(url)
     return response.json();
   })
   .then(function (deals) {
-    // build one big HTML string
+    // build one HTML string
     let cards = "";
 
     // deals is an array, so make a card for each game in it
@@ -39,3 +39,44 @@ fetch(url)
     dealsContainer.innerHTML = "<p>Could not load deals right now.</p>";
     console.log(error);
   });
+
+
+// progress chart that reads the games saved on the Backlog page
+const savedGames = JSON.parse(localStorage.getItem("games")) || [];
+
+const beatenCount = savedGames.filter(function (g) {
+  return g.status === "Beaten";
+}).length;
+const backlogCount = savedGames.filter(function (g) {
+  return g.status === "Backlog";
+}).length;
+
+const chartCanvas = document.querySelector("#statusChart");
+
+new Chart(chartCanvas, {
+  type: "bar",
+  data: {
+    labels: ["Backlog", "Beaten"],
+    datasets: [{
+      label: "Games",
+      data: [backlogCount, beatenCount],
+      backgroundColor: ["#dc3545", "#198754"]
+    }]
+  }
+});
+
+// latest activity
+const activityList = document.querySelector("#activityList");
+
+// take a copy, newest first (id is a timestamp) and keep only the last 5
+const recent = savedGames.slice().sort(function (a, b) {
+  return b.id - a.id;     // sorts the games by descending order
+}).slice(0, 5); // first 5 items
+
+// build the HTML list
+let activityHTML = "";
+recent.forEach(function (game) {
+  activityHTML += `<li class="list-group-item">➕ Added <strong>${game.title}</strong></li>`;
+});
+// send the list to the page
+activityList.innerHTML = activityHTML;

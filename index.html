@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
-  <!-- home.js only runs on this page (the game deals feature) -->
+  <!-- the chart.js library is used to create charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   <script src="js/home.js" defer></script>
 </head>
+
 <body>
   <!-- main.js injects the header and footer which is the same on every page (to minimize repetition) -->
   <header></header>
@@ -33,33 +36,41 @@
 
       <!-- button that takes the user to the Backlog page-->
       <a href="backlog.html" class="btn btn-primary btn-lg">Go to my Backlog</a>
-      </section>
-      
-      <section class="my-4">
-        <h2>Latest Activity</h2>
-      
-        <!-- temporary placeholder latest activity -->
-        <ul class="list-group">
-          <li class="list-group-item">✅ Beat <strong>God of War</strong></li>
-          <li class="list-group-item">➕ Added <strong>Elden Ring</strong> to the backlog</li>
-          <li class="list-group-item">✅ Beat <strong>Hades</strong></li>
-        </ul>
-      </section>
+    </section>
 
-      <!-- game deals from the CheapShark API (filled with home.js) -->
-      <section class="my-4">
-        <h2>Today's Game Deals</h2>
-        <p>Grab something cheap to add to the pile.</p>
+    <section class="my-4">
+      <h2>Latest Activity</h2>
 
-        <!-- home.js fills this row with deal cards -->
-        <div class="row" id="dealsContainer">
-          <!-- failsafe -->
-          <p>Loading deals...</p>
+      <ul class="list-group" id="activityList">
+        <!-- home.js fills this -->
+      </ul>
+    </section>
+
+    <!-- progress chart (filled with home.js) -->
+    <section class="my-4">
+      <h2>My Progress</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <canvas id="statusChart"></canvas>
         </div>
-      </section>
+      </div>
+    </section>
 
-      </main>
+    <!-- game deals from the CheapShark API (filled with home.js) -->
+    <section class="my-4">
+      <h2>Today's Game Deals</h2>
+      <p>Grab something cheap to add to the pile.</p>
+
+      <!-- home.js fills this row with deal cards -->
+      <div class="row" id="dealsContainer">
+        <!-- failsafe -->
+        <p>Loading deals...</p>
+      </div>
+    </section>
+
+  </main>
 
   <footer></footer>
 </body>
+
 </html>
