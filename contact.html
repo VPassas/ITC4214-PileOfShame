@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +10,101 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
+  <!-- bootstrap js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/contact.js" defer></script>
+  <!-- bootstrap icons for social links-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body>
   <!-- main.js fills the header and footer (shared on every page) -->
   <header></header>
 
   <main class="container">
     <h1>Contact</h1>
-  </main>
 
-  <footer></footer>
-</body>
-</html>
+    <!-- contact form (validation is done by the browser) -->
+    <section class="my-4">
+      <h2>Contact Us</h2>
+
+      <form id="contactForm" class="row g-3">
+
+        <div class="col-md-6">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+
+        <div class="col-12">
+          <label for="subject" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="subject" required>
+        </div>
+
+        <div class="col-12">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="4" required></textarea>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- confirmation popup which is hidden until the form is submitted-->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Message Sent ✅</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="confirmBody">
+            <!-- contact.js fills this with the submitted details -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Google map-->
+    <section class="my-4">
+      <h2>Find Us</h2>
+      <!-- ratio keeps the map responsive; border-0 removes the iframe border -->
+      <div class="ratio ratio-16x9">
+        <iframe src="https://maps.google.com/maps?q=The+American+College+of+Greece&output=embed" class="border-0"
+          loading="lazy" title="Our location on Google Maps">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- socials-->
+    <section class="my-4">
+  
+      <h2>Follow Us</h2>
+      <a href="https://facebook.com" class="fs-2 me-3 text-decoration-none" aria-label="Facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="https://x.com" class="fs-2 me-3 text-decoration-none" aria-label="X">
+        <i class="bi bi-twitter-x"></i>
+      </a>
+      <a href="https://instagram.com" class="fs-2 me-3 text-decoration-none" aria-label="Instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://github.com/VPassas" class="fs-2 text-decoration-none" aria-label="GitHub">
+        <i class="bi bi-github"></i>
+      </a>
+    </section>
+    
+    
+    </main>
+    
+    <footer></footer>
+    </body>
+    
+    </html>
