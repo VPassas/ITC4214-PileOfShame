@@ -1,6 +1,6 @@
 // main.js - shared code that runs on every page
 
-// The navbar.
+// The navbar
 const headerHTML = `
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
@@ -30,7 +30,7 @@ const headerHTML = `
   </nav>
 `;
 
-// The footer.
+// The footer
 const footerHTML = `
   <div class="bg-dark text-light py-4 mt-5">
     <div class="container">
@@ -44,11 +44,14 @@ const footerHTML = `
         <div class="col-md-4">
           <h5>Contact</h5>
           <p>Email: info@pileofshame.com</p>
-          <!-- TODO: add social media links here -->
         </div>
 
         <div class="col-md-4">
-          <!-- TODO: maybe add some quick links to the pages -->
+          <h5>Follow Us</h5>
+          <a href="https://facebook.com" class="text-light fs-4 me-3" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://x.com" class="text-light fs-4 me-3" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://instagram.com" class="text-light fs-4 me-3" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://github.com/VPassas" class="text-light fs-4" aria-label="GitHub"><i class="bi bi-github"></i></a>
         </div>
 
       </div>
