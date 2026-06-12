@@ -24,6 +24,14 @@ function priorityBadge(priority) {
   return `<span class="badge bg-success">Low</span>`;   // anything else = Low
 }
 
+// returns a colored badge for a status
+function statusBadge(status) {
+  if (status === "Beaten") {
+    return `<span class="badge bg-success">Beaten</span>`;
+  }
+  return `<span class="badge bg-secondary">Backlog</span>`;
+}
+
 
 // save the current games array into localStorage. It is turned into a string because it is the only acceptable format for localStorage.
 function saveGames() {
@@ -43,6 +51,9 @@ function editGame(id) {
   document.querySelector("#priority").value = game.priority;
 
   editingId = id;
+
+  // we are editing now, so make the button say "Update Game"
+  document.querySelector("#submitBtn").textContent = "Update Game";
 }
 
 //this function counts the number of games in each field and updates the summary
@@ -62,6 +73,11 @@ function renderSummary() {
 document.querySelectorAll(".filter-btn").forEach(function (button) {
   button.addEventListener("click", function () {
     currentFilter = button.getAttribute("data-filter");
+    // highlight the active filter button
+    document.querySelectorAll(".filter-btn").forEach(function (b) {
+      b.classList.remove("active");
+    });
+    button.classList.add("active");
     renderGames();
   });
 });
@@ -70,6 +86,11 @@ document.querySelectorAll(".filter-btn").forEach(function (button) {
 document.querySelectorAll(".sort-btn").forEach(function (button) {
   button.addEventListener("click", function () {
     currentSort = button.getAttribute("data-sort");
+    // highlight the active sort button
+    document.querySelectorAll(".sort-btn").forEach(function (b) {
+      b.classList.remove("active");
+    });
+    button.classList.add("active");
     renderGames();
   });
 });
@@ -102,13 +123,13 @@ function renderGames() {
     rows += `
       <tr>
         <td>${game.title}</td>
-        <td>${game.platform}</td>
-        <td>${game.genre}</td>
-        <td>${priorityBadge(game.priority)}</td> <!-- this calls priorityBadge() to get the colored symbol -->
-        <td>${game.status}</td>
-        <td>${game.dateAdded}</td>
+        <td class="d-none d-md-table-cell">${game.platform}</td> <!-- these columns are hidden on small screens -->
+        <td class="d-none d-md-table-cell">${game.genre}</td>
+        <td>${priorityBadge(game.priority)}</td>
+        <td>${statusBadge(game.status)}</td>
+        <td class="d-none d-md-table-cell">${game.dateAdded}</td>
         <td>
-            <button class="btn btn-success btn-sm beaten-btn" data-id="${game.id}">Beat</button>
+            <button class="btn btn-success btn-sm beaten-btn" data-id="${game.id}">Beat</button> <!--these are the action buttons for each game -->
             <button class="btn btn-warning btn-sm edit-btn" data-id="${game.id}">Edit</button>
             <button class="btn btn-danger btn-sm delete-btn" data-id="${game.id}">Delete</button>
         </td>
@@ -116,7 +137,16 @@ function renderGames() {
     `;
   });
 
-  tableBody.innerHTML = rows;
+  // empty states: show a friendly message instead of a blank table
+  if (visibleGames.length === 0) {
+    if (games.length === 0) {
+      tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted">Your backlog is empty — add a game above!</td></tr>`;
+    } else {
+      tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted">No games match the current filter.</td></tr>`;
+    }
+  } else {
+    tableBody.innerHTML = rows;
+  }
   renderSummary();
 }
 
@@ -139,6 +169,10 @@ tableBody.addEventListener("click", function (event) {
 });
 
 function deleteGame(id) {
+  // ask before deleting so a misclick does not delete a game
+  if (!confirm("Delete this game?")) {
+    return;
+  }
   games = games.filter(function (game) {
     return game.id !== id;   // keep every game except the one clicked
   });
@@ -194,6 +228,8 @@ gameForm.addEventListener("submit", function (event) {
   renderGames();
   // .reset() is a built in form method that clears all the inputs
   gameForm.reset();
+  // the button says "Add Game" again
+  document.querySelector("#submitBtn").textContent = "Add Game";
 });
 
 // for first load, it shows the current backlog.

@@ -2,9 +2,11 @@
 
 // The navbar
 const headerHTML = `
-  <nav class="navbar navbar-expand-lg sticky-top">
+  <nav class="navbar navbar-expand-lg sticky-top bg-dark shadow-sm" data-bs-theme="dark">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Pile of Shame</a>
+      <a class="navbar-brand" href="index.html">
+        <img src="img/favicon.svg" alt="" width="24" height="24" class="me-2">Pile of Shame
+      </a>
 
       <!-- hamburger button (we open and close it in main.js) -->
       <button class="navbar-toggler" type="button"
@@ -25,14 +27,14 @@ const headerHTML = `
       </div>
 
       <!-- dark mode button -->
-      <button class="btn btn-outline-secondary btn-sm" id="themeToggle" type="button">Dark mode</button>
+      <button class="btn btn-outline-light btn-sm" id="themeToggle" type="button">Dark mode</button>
     </div>
   </nav>
 `;
 
 // The footer
 const footerHTML = `
-  <div class="bg-dark text-light py-4 mt-5">
+  <div class="bg-dark text-light py-4 mt-5 border-top border-secondary">
     <div class="container">
       <div class="row">
 

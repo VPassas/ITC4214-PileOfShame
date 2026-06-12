@@ -1,1 +1,12 @@
 /* PileOfShame - custom styles (loaded after Bootstrap) */
+
+/* Sticky footer */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}

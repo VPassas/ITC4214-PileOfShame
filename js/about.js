@@ -16,7 +16,7 @@ team.forEach(function (member) {
         <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&size=200"
              class="card-img-top" alt="${member.name}">
         <div class="card-body">
-          <h5 class="card-title">${member.name}</h5>
+          <h3 class="card-title h5">${member.name}</h3>
           <p class="text-muted">${member.role}</p>
           <p class="card-text">${member.bio}</p>
         </div>

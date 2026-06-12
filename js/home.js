@@ -53,17 +53,22 @@ const backlogCount = savedGames.filter(function (g) {
 
 const chartCanvas = document.querySelector("#statusChart");
 
-new Chart(chartCanvas, {
-  type: "bar",
-  data: {
-    labels: ["Backlog", "Beaten"],
-    datasets: [{
-      label: "Games",
-      data: [backlogCount, beatenCount],
-      backgroundColor: ["#dc3545", "#198754"]
-    }]
-  }
-});
+if (savedGames.length === 0) {
+  // no games yet so show a message instead of an empty chart
+  chartCanvas.parentElement.innerHTML = `<p class="text-muted">Add games on the Backlog page to see your progress.</p>`;
+} else {
+  new Chart(chartCanvas, {
+    type: "bar",
+    data: {
+      labels: ["Backlog", "Beaten"],
+      datasets: [{
+        label: "Games",
+        data: [backlogCount, beatenCount],
+        backgroundColor: ["#dc3545", "#198754"]
+      }]
+    }
+  });
+}
 
 // latest activity
 const activityList = document.querySelector("#activityList");
@@ -78,5 +83,9 @@ let activityHTML = "";
 recent.forEach(function (game) {
   activityHTML += `<li class="list-group-item">➕ Added <strong>${game.title}</strong></li>`;
 });
+// empty state when there is no activity yet
+if (recent.length === 0) {
+  activityHTML = `<li class="list-group-item text-muted">No recent activity yet - add some games!</li>`;
+}
 // send the list to the page
 activityList.innerHTML = activityHTML;
