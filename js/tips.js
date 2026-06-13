@@ -14,7 +14,7 @@ const dailyTips = [
 ];
 
 // use today's date to pick one, so it's the same all day but changes daily
-const dayNumber = new Date().getDate();              // day of month (1–31)
+const dayNumber = new Date().getDate();              // day of month (1-31)
 const tipIndex = dayNumber % dailyTips.length;       // keeps the index in range
 document.querySelector("#tipOfDay").textContent = dailyTips[tipIndex];
 
@@ -57,6 +57,7 @@ tips.forEach(function (tip, index) {
 });
 
 
+
 // send the tips to the page
 tipsAccordion.innerHTML = tipsHTML;
 
@@ -74,7 +75,7 @@ pickButton.addEventListener("click", function () {
 
   // nothing to pick from?
   if (backlog.length === 0) {
-    pickResult.innerHTML = `<div class="alert alert-warning">Your backlog is empty — add some games first!</div>`;
+    pickResult.innerHTML = `<div class="alert alert-warning">Your backlog is empty - add some games first!</div>`;
     return;
   }
 

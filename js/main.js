@@ -47,17 +47,17 @@ const footerHTML = `
       <div class="row">
 
         <div class="col-md-4">
-          <h5>Pile of Shame</h5>
+          <h2 class="h5">Pile of Shame</h2>
           <p>Track your game backlog and finally beat the pile.</p>
         </div>
 
         <div class="col-md-4">
-          <h5>Contact</h5>
+          <h2 class="h5">Contact</h2>
           <p>Email: info@pileofshame.com</p>
         </div>
 
         <div class="col-md-4">
-          <h5>Follow Us</h5>
+          <h2 class="h5">Follow Us</h2>
           <a href="https://facebook.com" class="text-light fs-4 me-3" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
           <a href="https://x.com" class="text-light fs-4 me-3" aria-label="X"><i class="bi bi-twitter-x"></i></a>
           <a href="https://instagram.com" class="text-light fs-4 me-3" aria-label="Instagram"><i class="bi bi-instagram"></i></a>

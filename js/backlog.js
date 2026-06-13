@@ -140,7 +140,7 @@ function renderGames() {
   // empty states: show a friendly message instead of a blank table
   if (visibleGames.length === 0) {
     if (games.length === 0) {
-      tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted">Your backlog is empty — add a game above!</td></tr>`;
+      tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted">Your backlog is empty - add a game above!</td></tr>`;
     } else {
       tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted">No games match the current filter.</td></tr>`;
     }

@@ -21,7 +21,7 @@ fetch(url)
           <div class="card h-100">
             <img src="${deal.thumb}" class="card-img-top" alt="${deal.title}">
             <div class="card-body">
-              <h5 class="card-title">${deal.title}</h5>
+              <h3 class="card-title h5">${deal.title}</h3>
               <p class="card-text">
                 <span class="fw-bold">$${deal.salePrice}</span>
                 <span class="text-muted text-decoration-line-through">$${deal.normalPrice}</span>

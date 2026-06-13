@@ -29,10 +29,13 @@ h1, h2, h3, h4, h5, h6,
 
 /* ember accent on primary buttons which overrides bootstrap's blue */
 .btn-primary {
+  --bs-btn-color: #111;
   --bs-btn-bg: var(--ember);
   --bs-btn-border-color: var(--ember);
+  --bs-btn-hover-color: #111;
   --bs-btn-hover-bg: var(--ember-dark);
   --bs-btn-hover-border-color: var(--ember-dark);
+  --bs-btn-active-color: #111;
   --bs-btn-active-bg: var(--ember-dark);
   --bs-btn-active-border-color: var(--ember-dark);
 }
