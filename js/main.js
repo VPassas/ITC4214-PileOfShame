@@ -1,5 +1,13 @@
 // main.js - shared code that runs on every page
 
+// escape user text so it cannot inject html/scripts. The text is placed into a div
+// as plain text and then read back as html. it is used wherever we show user input.
+function escapeHTML(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
 // The navbar
 const headerHTML = `
   <nav class="navbar navbar-expand-lg sticky-top bg-dark shadow-sm" data-bs-theme="dark">
@@ -94,18 +102,30 @@ navToggle.addEventListener("click", function () {
 const htmlEl = document.querySelector("html");
 const themeToggle = document.querySelector("#themeToggle");
 
+// update the button to show what it will switch TO
+function updateThemeButton(theme) {
+  if (theme === "dark") {
+    themeToggle.innerHTML = `<i class="bi bi-sun"></i> Light mode`;
+  } else {
+    themeToggle.innerHTML = `<i class="bi bi-moon-stars"></i> Dark mode`;
+  }
+}
+
 // when the page loads apply the saved theme (default is light)
 const savedTheme = localStorage.getItem("theme") || "light";
 htmlEl.setAttribute("data-bs-theme", savedTheme);
+updateThemeButton(savedTheme);
 
 // when the button is clicked switch the theme and remember it
 themeToggle.addEventListener("click", function () {
   const current = htmlEl.getAttribute("data-bs-theme");
+  let next;
   if (current === "dark") {
-    htmlEl.setAttribute("data-bs-theme", "light");
-    localStorage.setItem("theme", "light");
+    next = "light";
   } else {
-    htmlEl.setAttribute("data-bs-theme", "dark");
-    localStorage.setItem("theme", "dark");
+    next = "dark";
   }
+  htmlEl.setAttribute("data-bs-theme", next);
+  localStorage.setItem("theme", next);
+  updateThemeButton(next);
 });

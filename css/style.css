@@ -1,12 +1,63 @@
 /* PileOfShame - custom styles (loaded after Bootstrap) */
 
-/* Sticky footer */
+/* @import must come first as it loads the Orbitron font for headings */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap");
+
+:root {
+  --ember: #ff5722;
+  --ember-dark: #e64a19;
+}
+
+/* sticky footer */
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* fill the space between the navbar and footer */
 main {
   flex: 1;
+}
+
+/*  font for headings and the brand */
+h1, h2, h3, h4, h5, h6,
+.navbar-brand {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 1px;
+}
+
+/* ember accent on primary buttons which overrides bootstrap's blue */
+.btn-primary {
+  --bs-btn-bg: var(--ember);
+  --bs-btn-border-color: var(--ember);
+  --bs-btn-hover-bg: var(--ember-dark);
+  --bs-btn-hover-border-color: var(--ember-dark);
+  --bs-btn-active-bg: var(--ember-dark);
+  --bs-btn-active-border-color: var(--ember-dark);
+}
+
+/* dark overlay stays over the image so the title stays readable */
+.hero {
+  background-color: #14110f;
+  background-image: linear-gradient(rgba(10, 8, 6, 0.6), rgba(10, 8, 6, 0.8)), url("../img/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  border: 1px solid var(--ember);
+}
+
+/* glowing effect on hero title */
+.hero-title {
+  color: var(--ember);
+  text-shadow: 0 0 14px rgba(255, 87, 34, 0.6);
+}
+
+/* Cards lift slightly on hover */
+.card {
+  transition: transform 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
 }

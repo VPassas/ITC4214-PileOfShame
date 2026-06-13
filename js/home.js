@@ -81,7 +81,7 @@ const recent = savedGames.slice().sort(function (a, b) {
 // build the HTML list
 let activityHTML = "";
 recent.forEach(function (game) {
-  activityHTML += `<li class="list-group-item">➕ Added <strong>${game.title}</strong></li>`;
+  activityHTML += `<li class="list-group-item">➕ Added <strong>${escapeHTML(game.title)}</strong></li>`;
 });
 // empty state when there is no activity yet
 if (recent.length === 0) {

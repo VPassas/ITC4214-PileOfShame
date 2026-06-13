@@ -82,5 +82,5 @@ pickButton.addEventListener("click", function () {
   const randomIndex = Math.floor(Math.random() * backlog.length);
   const game = backlog[randomIndex];
 
-  pickResult.innerHTML = `<div class="alert alert-success">🎮 Play <strong>${game.title}</strong> (${game.platform}) next!</div>`;
+  pickResult.innerHTML = `<div class="alert alert-success">🎮 Play <strong>${escapeHTML(game.title)}</strong> (${escapeHTML(game.platform)}) next!</div>`;
 });

@@ -122,9 +122,9 @@ function renderGames() {
   visibleGames.forEach(function (game) {
     rows += `
       <tr>
-        <td>${game.title}</td>
-        <td class="d-none d-md-table-cell">${game.platform}</td> <!-- these columns are hidden on small screens -->
-        <td class="d-none d-md-table-cell">${game.genre}</td>
+        <td>${escapeHTML(game.title)}</td>
+        <td class="d-none d-md-table-cell">${escapeHTML(game.platform)}</td>
+        <td class="d-none d-md-table-cell">${escapeHTML(game.genre)}</td>
         <td>${priorityBadge(game.priority)}</td>
         <td>${statusBadge(game.status)}</td>
         <td class="d-none d-md-table-cell">${game.dateAdded}</td>
@@ -195,11 +195,17 @@ gameForm.addEventListener("submit", function (event) {
   // stop the page from reloading
   event.preventDefault();
 
-  // read the current input values once
-  const title = document.querySelector("#title").value;
+  // read the current input values once. Trim removes leading/trailing spaces
+  const title = document.querySelector("#title").value.trim();
   const platform = document.querySelector("#platform").value;
-  const genre = document.querySelector("#genre").value;
+  const genre = document.querySelector("#genre").value.trim();
   const priority = document.querySelector("#priority").value;
+
+  // block whitespace titles
+  if (title === "") {
+    alert("Please enter a game title.");
+    return;
+  }
 
   if (editingId === null) {
     // add a new game
