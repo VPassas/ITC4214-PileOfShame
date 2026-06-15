@@ -64,3 +64,9 @@ h1, h2, h3, h4, h5, h6,
 .card:hover {
   transform: translateY(-4px);
 }
+
+/* Wrap long titles/genres inside table cells so they can't push the
+   table wider than the screen (especially on phones). */
+.table td {
+  overflow-wrap: anywhere;
+}

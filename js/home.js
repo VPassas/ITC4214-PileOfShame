@@ -18,16 +18,20 @@ fetch(url)
     deals.forEach(function (deal) {
       cards += `
         <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img src="${deal.thumb}" class="card-img-top" alt="${deal.title}">
-            <div class="card-body">
-              <h3 class="card-title h5">${deal.title}</h3>
-              <p class="card-text">
-                <span class="fw-bold">$${deal.salePrice}</span>
-                <span class="text-muted text-decoration-line-through">$${deal.normalPrice}</span>
-              </p>
+          <!-- the whole card links to the deal on CheapShark (opens in a new tab) -->
+          <a href="https://www.cheapshark.com/redirect?dealID=${deal.dealID}"
+             class="text-decoration-none text-reset" target="_blank" rel="noopener">
+            <div class="card h-100">
+              <img src="${deal.thumb}" class="card-img-top" alt="${deal.title}">
+              <div class="card-body">
+                <h3 class="card-title h5">${deal.title}</h3>
+                <p class="card-text">
+                  <span class="fw-bold">$${deal.salePrice}</span>
+                  <span class="text-muted text-decoration-line-through">$${deal.normalPrice}</span>
+                </p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       `;
     });
